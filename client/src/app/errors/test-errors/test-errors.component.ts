@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-test-errors',
@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestErrorsComponent implements OnInit {
   baseUrl = 'https://localhost:5001/api/';
+  validationErrors: string[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -17,8 +18,8 @@ export class TestErrorsComponent implements OnInit {
   get404Error()
   {
     this.http.get(this.baseUrl + 'buggy/not-found').subscribe({
-      next: response => console.log(response),
-      error: error => console.log(error)
+      next: response => {console.log(response)},
+      error: error => {console.log(error)}
     })
   }
 
@@ -48,7 +49,10 @@ export class TestErrorsComponent implements OnInit {
   {
     this.http.post(this.baseUrl + 'account/register', {}).subscribe({
       next: response => console.log(response),
-      error: error => console.log(error)
+      error: error => {
+        console.log(error);
+        this.validationErrors = error;
+      }
     })
   }  
 }
