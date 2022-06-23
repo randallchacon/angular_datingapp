@@ -6,6 +6,8 @@
 #myIgnore
 appsettings.json
 .vscode
+datingapp.db-shm
+datingapp.db-wal
 
 # User-specific files
 *.rsuser
